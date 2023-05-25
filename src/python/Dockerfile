@@ -1,8 +1,11 @@
 FROM python:3.8-slim-buster
 
-WORKDIR /app
+COPY . /python-service
 
-COPY requirements.txt requirements.txt
+WORKDIR /python-service
+
+RUN ls -a
+
 RUN pip3 install -r requirements.txt
 
 COPY . .
