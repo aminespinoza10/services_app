@@ -1,2 +1,12 @@
-# services_app
-This is a temporal repo to deploy an app from a container
+# Services App
+
+## Infraestructura
+
+Requieres:
+
+* Un grupo de recursos
+* Una cuenta de almacenamiento
+* Tres container apps
+
+Cada container app tiene espacio para una imagen.
+
