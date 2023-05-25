@@ -1,5 +1,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
+
+COPY /src/net /dotnetapp
+
+WORKDIR /dotnetapp
 COPY myFirstService.csproj .
 RUN dotnet restore
 COPY . .
