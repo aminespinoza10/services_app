@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 COPY /src/net /dotnetapp
 
 WORKDIR /dotnetapp
-COPY myFirstService.csproj .
+
 RUN dotnet restore
 COPY . .
 
