@@ -34,3 +34,6 @@ jobs:
     - name: Publish Docker Go image
       run: |
         docker push aminespinoza/goservice:latest
+    - name: Build Docker NET image
+      run: | 
+        docker build --platform linux --tag aminespinoza/netservice:latest -f src/net/Dockerfile .
