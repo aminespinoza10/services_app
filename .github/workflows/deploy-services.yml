@@ -25,3 +25,6 @@ jobs:
     - name: Build Docker Python image
       run: | 
         docker build --platform linux --tag aminespinoza/pythonservice:latest -f src/python/Dockerfile .
+    - name: Publish Docker image
+      run: |
+        docker push aminespinoza/pythonservice:latest
