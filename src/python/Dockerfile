@@ -1,6 +1,6 @@
 FROM python:3.8-slim-buster
 
-COPY . /python-service
+COPY src/python /python-service
 
 WORKDIR /python-service
 
