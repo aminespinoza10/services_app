@@ -22,3 +22,6 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build Docker Python image
+      run: | 
+        docker build --platform linux --tag aminespinoza/pythonservice:latest -f src/python/Dockerfile .
