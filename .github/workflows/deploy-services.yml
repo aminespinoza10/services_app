@@ -28,3 +28,6 @@ jobs:
     - name: Publish Docker image
       run: |
         docker push aminespinoza/pythonservice:latest
+    - name: Build Docker Go image
+      run: |
+        docker build --platform linux --tag aminespinoza/goservice:latest -f src/go/Dockerfile .
