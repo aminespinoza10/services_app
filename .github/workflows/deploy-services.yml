@@ -54,4 +54,4 @@ jobs:
         
     - name: Deploy Python container App
       run: |
-        az containerapp up --name go-container-app --image aminespinoza/pythonservice:latest --resource-group playingGroup --environment go-container-app-env --ingress external 
+        az containerapp up --name python-container-app --image aminespinoza/pythonservice:latest --resource-group playingGroup --environment python-container-app-env --ingress external 
