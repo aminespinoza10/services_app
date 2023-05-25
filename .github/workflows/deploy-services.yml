@@ -36,11 +36,9 @@ jobs:
     - name: Publish Docker Python image
       run: |
         docker push aminespinoza/pythonservice:latest
-      
     - name: Deploy Python container App
       run: |
         az containerapp up --name python-container-app --image aminespinoza/pythonservice:latest --resource-group playingGroup --environment python-container-app-env --ingress external 
-
 
      # Go image build and push   
     - name: Build Docker Go image
@@ -49,22 +47,19 @@ jobs:
     - name: Publish Docker Go image
       run: |
         docker push aminespinoza/goservice:latest
-    
-    - name: Deploy Python container App
-      run: |
-        az containerapp up --name python-container-app --image aminespinoza/pythonservice:latest --resource-group playingGroup --environment python-container-app-env --ingress external 
-
     - name: Deploy Go container App
       run: |
         az containerapp up --name go-container-app --image aminespinoza/goservice:latest --resource-group playingGroup --environment go-container-app-env --ingress external 
 
-        
       # NET image build and push
-    #- name: Build Docker NET image
-    #  run: | 
-    #    docker build --platform linux --tag aminespinoza/netservice:latest -f src/net/Dockerfile .
-    #- name: Publish Docker NET image
-    #  run: |
-    #    docker push aminespinoza/netservice:latest
+    - name: Build Docker NET image
+      run: | 
+        docker build --platform linux --tag aminespinoza/netservice:latest -f src/net/Dockerfile .
+    - name: Publish Docker NET image
+      run: |
+        docker push aminespinoza/netservice:latest
+    - name: Deploy Go container App
+      run: |
+        az containerapp up --name net-container-app --image aminespinoza/netservice:latest --resource-group playingGroup --environment net-container-app-env --ingress external 
 
         
