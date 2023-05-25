@@ -32,10 +32,7 @@ jobs:
         docker push aminespinoza/pythonservice:latest
     
     
-    - name: Build and deploy Container App
-      uses: azure/container-apps-deploy-action@v1
-      with:
-        imageToDeploy: aminespinoza/pythonservice:latest
+
      # Go image build and push   
     #- name: Build Docker Go image
     #  run: |
@@ -51,7 +48,10 @@ jobs:
     #- name: Publish Docker NET image
     #  run: |
     #    docker push aminespinoza/netservice:latest
+    - name: Install az containerapp extension
+      run: |
+        az config set extension.use_dynamic_install=yes_without_prompt
         
-    #- name: Deploy Python container App
-    #  run: |
-    #    az containerapp up --name go-container-app --image aminespinoza/pythonservice:latest --resource-group playingGroup --environment go-container-app-env --ingress external 
+    - name: Deploy Python container App
+      run: |
+        az containerapp up --name go-container-app --image aminespinoza/pythonservice:latest --resource-group playingGroup --environment go-container-app-env --ingress external 
