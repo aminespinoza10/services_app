@@ -5,7 +5,6 @@ COPY /src/net /dotnetapp
 WORKDIR /dotnetapp
 
 RUN dotnet restore
-COPY . .
 
 RUN dotnet build "myFirstService.csproj" -c Release -o /app/build
 
