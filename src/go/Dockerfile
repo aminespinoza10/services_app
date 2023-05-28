@@ -3,7 +3,7 @@ FROM golang:1.14.4-alpine
 RUN mkdir /app
 ADD . /app
 
-RUN cd src
+RUN cd src/go && ls -a
 
 RUN ls -a
 
