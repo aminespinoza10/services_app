@@ -38,28 +38,28 @@ jobs:
         docker push aminespinoza/pythonservice:latest
     - name: Deploy Python container App
       run: |
-        az containerapp up --name python-container-app --image aminespinoza/pythonservice:latest --resource-group playingGroup --environment python-container-app-env --ingress external --target-port 4000
+        az containerapp up --name python-container-app --image aminespinoza/pythonservice:latest --resource-group playingGroup --environment python-container-app-env --ingress external --target-port 5000
 
      # Go image build and push   
-    - name: Build Docker Go image
-      run: |
-        docker build --platform linux --tag aminespinoza/goservice:latest -f src/go/Dockerfile .
-    - name: Publish Docker Go image
-      run: |
-        docker push aminespinoza/goservice:latest
-    - name: Deploy Go container App
-      run: |
-        az containerapp up --name go-container-app --image aminespinoza/goservice:latest --resource-group playingGroup --environment go-container-app-env --ingress external --target-port 4000
+ #   - name: Build Docker Go image
+ #     run: |
+ #       docker build --platform linux --tag aminespinoza/goservice:latest -f src/go/Dockerfile .
+ #   - name: Publish Docker Go image
+ #     run: |
+ #       docker push aminespinoza/goservice:latest
+ #   - name: Deploy Go container App
+ #     run: |
+ #       az containerapp up --name go-container-app --image aminespinoza/goservice:latest --resource-group playingGroup --environment go-container-app-env --ingress external --target-port 4000
 
       # NET image build and push
-    - name: Build Docker NET image
-      run: | 
-        docker build --platform linux --tag aminespinoza/netservice:latest -f src/net/Dockerfile .
-    - name: Publish Docker NET image
-      run: |
-        docker push aminespinoza/netservice:latest
-    - name: Deploy Go container App
-      run: |
-        az containerapp up --name net-container-app --image aminespinoza/netservice:latest --resource-group playingGroup --environment net-container-app-env --ingress external --target-port 3000
+ #   - name: Build Docker NET image
+ #     run: | 
+ #       docker build --platform linux --tag aminespinoza/netservice:latest -f src/net/Dockerfile .
+ #   - name: Publish Docker NET image
+ #     run: |
+ #       docker push aminespinoza/netservice:latest
+ #   - name: Deploy Go container App
+ #     run: |
+ #       az containerapp up --name net-container-app --image aminespinoza/netservice:latest --resource-group playingGroup --environment net-container-app-env --ingress external --target-port 3000
 
         
