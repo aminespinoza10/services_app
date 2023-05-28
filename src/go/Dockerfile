@@ -3,6 +3,8 @@ FROM golang:1.14.4-alpine
 RUN mkdir /app
 ADD . /app
 
+RUN cd src
+
 RUN ls -a
 
 WORKDIR /app
