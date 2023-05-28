@@ -9,6 +9,10 @@ variable "resource_group_name" {
 variable "log_analytics_workspace_id" {
   type    = string
 }
+
+variable "container_apps_env_name" {
+  type = string
+}
   
 variable "container_app_name" {
   type    = string
