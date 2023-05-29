@@ -4,6 +4,7 @@ COPY /src/net /dotnetapp
 
 WORKDIR /dotnetapp
 
+EXPOSE 80
 RUN dotnet restore
 
 RUN dotnet build "myFirstService.csproj" -c Release -o /app/build
