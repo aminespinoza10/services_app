@@ -1,9 +1,15 @@
-FROM golang:1.14.4-alpine
+FROM golang:1.18 as build
 
-RUN mkdir /app
-ADD src/go /app
+WORKDIR /go/src/app
+COPY . .
 
-WORKDIR /app
-EXPOSE 8081
-RUN go build -o main .
-CMD ["/app/main"]
+RUN go mod download
+RUN go vet -v
+RUN go test -v
+
+RUN CGO_ENABLED=0 go build -o /go/bin/app
+
+FROM gcr.io/distroless/static-debian11
+COPY --from=build /go/src/app /
+COPY --from=build /go/bin/app /
+CMD ["/app"]
