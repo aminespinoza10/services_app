@@ -1,7 +1,7 @@
 FROM golang:1.18 as build
 
 WORKDIR /go/src/app
-COPY . .
+COPY src/go .
 
 RUN go mod download
 RUN go vet -v
