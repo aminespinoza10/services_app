@@ -14,11 +14,21 @@ variable "storage_account_name" {
 }
 
 variable "container_app_env_name" {
-  type    = set(string)
-  default = ["go-container-env", "python-container-env", "net-container-env"]
+  type    = string
+  default = "general-container-env"
 }
 
-variable "container_app_name" {
-  type    = set(string)
-  default = ["go-container-app", "python-container-app", "net-container-app"]
+variable "go_container_app_name" {
+  type    = string
+  default = "goservice"
+}
+
+variable "net_container_app_name" {
+  type    = string
+  default = "pythonservice"
+}
+
+variable "python_container_app_name" {
+  type    = string
+  default = "netservice"
 }

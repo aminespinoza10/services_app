@@ -31,11 +31,9 @@ resource "azurerm_log_analytics_workspace" "log_analytics" {
   retention_in_days   = 30
 }
 
-module "name" {
-  source = "./modules/containerApps"
-  for_each                   = var.container_app_name
+resource "azurerm_container_app_environment" "apps_environment" {
+  name                       = var.container_app_env_name
   location                   = var.location
-  resource_group_name        = azurerm_resource_group.rg.name
+  resource_group_name        = var.resource_group_name
   log_analytics_workspace_id = azurerm_log_analytics_workspace.log_analytics.id
-  container_app_name         = each.key
 }
