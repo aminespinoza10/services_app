@@ -38,7 +38,7 @@ jobs:
         docker push aminespinoza/pythonservice:latest
     - name: Deploy Python container App
       run: |
-        az containerapp up --name python-container-app --image aminespinoza/pythonservice:latest --resource-group playingGroup --environment python-container-app-env --ingress external --target-port 5000
+        az containerapp up --name python-container-app --image aminespinoza/pythonservice:latest --resource-group playingGroup --environment general-container-env --logs-workspace-id containerappsloganalytics --ingress external --target-port 5000
 
      # Go image build and push   
     - name: Build Docker Go image
@@ -49,7 +49,7 @@ jobs:
         docker push aminespinoza/goservice:latest
     - name: Deploy Go container App
       run: |
-        az containerapp up --name go-container-app --image aminespinoza/goservice:latest --resource-group playingGroup --environment go-container-app-env --ingress external --target-port 8080
+        az containerapp up --name go-container-app --image aminespinoza/goservice:latest --resource-group playingGroup --environment general-container-env --logs-workspace-id containerappsloganalytics --ingress external --target-port 8080
 
       # NET image build and push
     - name: Build Docker NET image
@@ -58,8 +58,8 @@ jobs:
     - name: Publish Docker NET image
       run: |
         docker push aminespinoza/netservice:latest
-    - name: Deploy Go container App
+    - name: Deploy NET container App
       run: |
-        az containerapp up --name net-container-app --image aminespinoza/netservice:latest --resource-group playingGroup --environment net-container-app-env --ingress external --target-port 3000
+        az containerapp up --name net-container-app --image aminespinoza/netservice:latest --resource-group playingGroup --environment general-container-env --logs-workspace-id containerappsloganalytics --ingress external --target-port 3000
 
         
