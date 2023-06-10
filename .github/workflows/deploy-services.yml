@@ -49,7 +49,7 @@ jobs:
         docker push aminespinoza/goservice:latest
     - name: Deploy Go container App
       run: |
-        az containerapp up --name go-container-app --image aminespinoza/goservice:latest --resource-group playingGroup --environment general-container-env --logs-workspace-id containerappsloganalytics --ingress external --target-port 8080
+        az containerapp up --name go-container-app --image aminespinoza/goservice:latest --resource-group playingGroup --environment general-container-env --logs-workspace-id containerappsloganalytics --ingress external --target-port 8081
 
       # NET image build and push
     - name: Build Docker NET image
