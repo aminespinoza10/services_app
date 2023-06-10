@@ -60,6 +60,6 @@ jobs:
         docker push aminespinoza/netservice:latest
     - name: Deploy NET container App
       run: |
-        az containerapp up --name net-container-app --image aminespinoza/netservice:latest --resource-group playingGroup --environment general-container-env --logs-workspace-id containerappsloganalytics --ingress external --target-port 3000
+        az containerapp up --name net-container-app --image aminespinoza/netservice:latest --resource-group playingGroup --environment general-container-env --logs-workspace-id containerappsloganalytics --ingress external --target-port 80
 
         
