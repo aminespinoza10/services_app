@@ -17,6 +17,7 @@ jobs:
       uses: Azure/login@v1.4.6
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }} 
+        
     - name: Install az containerapp extension
       run: |
         az config set extension.use_dynamic_install=yes_without_prompt
