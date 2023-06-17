@@ -1,0 +1,62 @@
+name: Container Apps Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Docker build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v3   
+    - name: Azure Login
+      uses: Azure/login@v1.4.6
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }} 
+    - name: Install az containerapp extension
+      run: |
+        az config set extension.use_dynamic_install=yes_without_prompt
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+     # Python image build and push   
+    - name: Build Docker Python image
+      run: | 
+        docker build --platform linux --tag aminespinoza/pythonservice:latest -f src/python/Dockerfile .
+    - name: Publish Docker Python image
+      run: |
+        docker push aminespinoza/pythonservice:latest
+    - name: Deploy Python container App
+      run: |
+        az containerapp up --name python-container-app --image aminespinoza/pythonservice:latest --resource-group playingGroup --environment general-container-env --ingress external --target-port 5000
+
+     # Go image build and push   
+    - name: Build Docker Go image
+      run: |
+        docker build --platform linux --tag aminespinoza/goservice:latest -f src/go/Dockerfile .
+    - name: Publish Docker Go image
+      run: |
+        docker push aminespinoza/goservice:latest
+    - name: Deploy Go container App
+      run: |
+        az containerapp up --name go-container-app --image aminespinoza/goservice:latest --resource-group playingGroup --environment general-container-env --ingress external --target-port 8080
+
+      # NET image build and push
+    - name: Build Docker NET image
+      run: | 
+        docker build --platform linux --tag aminespinoza/netservice:latest -f src/net/Dockerfile .
+    - name: Publish Docker NET image
+      run: |
+        docker push aminespinoza/netservice:latest
+    - name: Deploy NET container App
+      run: |
+        az containerapp up --name net-container-app --image aminespinoza/netservice:latest --resource-group playingGroup --environment general-container-env --ingress external --target-port 3000
+
+
