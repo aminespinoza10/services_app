@@ -49,4 +49,15 @@ jobs:
       run: |
         az containerapp up --name go-container-app --image aminespinoza/goservice:latest --resource-group playingGroup --environment general-container-env --ingress external --target-port 8081
 
+      # NET image build and push
+    - name: Build Docker NET image
+      run: | 
+        docker build --platform linux --tag aminespinoza/netservice:latest -f src/net/Dockerfile .
+    - name: Publish Docker NET image
+      run: |
+        docker push aminespinoza/netservice:latest
+    - name: Deploy NET container App
+      run: |
+        az containerapp up --name net-container-app --image aminespinoza/netservice:latest --resource-group playingGroup --environment general-container-env --ingress external --target-port 80
+
 
